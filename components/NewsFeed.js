@@ -9,7 +9,8 @@ import {
 	ActivityIndicator,
 	Image,
 	StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  RefreshControl
 } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
@@ -94,7 +95,8 @@ deleteItem(id){
     					renderItem={({ item }) => (
     						<TouchableOpacity>
     							<ListItem
-                   onPress={() => alert("View Profile")}
+                   onPress={() => alert("View Profile")
+                    leftAvatar={{ source: { uri: item.picture.thumbnail } }} //If the users have profile pictures
     								title={`${item.user.given_name} ${item.user.family_name}`}
     								subtitle={item.user.email}
                    />
@@ -108,7 +110,7 @@ deleteItem(id){
     					keyExtractor={({id}, item) => id}
     					ItemSeparatorComponent={this.renderSeparator}
     					ListHeaderComponent={this.renderHeader}
-    					initialNumToRender={15}
+    					initialNumToRender={5}
     					maxToRenderPerBatch={2}
     					removeClippedSubviews={true}
     					onEndReachedThreshold={0.5}
