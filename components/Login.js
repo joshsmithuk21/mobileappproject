@@ -34,10 +34,17 @@ export default class Login extends Component {
 				   autoCorrect={false}
 			/>
 
-                <View style={{ height: 100, width: 10000}} />
+                <View style={{ height: 100}} />
                 <Button
 					      onPress={this.props.onLoginPress}
                           title="Submit"
+                      />
+
+
+                <View style={{paddingTop: 10}} />
+                <Button
+					      onPress={this.props.onSignUpPress}
+                          title="Sign Up"
                       />
                   </ScrollView>
             )

@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from './components/Login';
 import NewsFeed from './components/NewsFeed';
 import NewTweet from './components/NewTweet';
+import Singup from './components/Signup';
 
 
 export default class app extends Component {
@@ -31,6 +32,10 @@ export default class app extends Component {
 			onLoginPress={() => this.setState({isLoggedIn: true})}
 		/>;
     return <AppContainer />;
+
+    <View style = {styles.container}>
+      <Signup />
+      </View>
 	}
 
  }
@@ -50,8 +55,9 @@ export default class app extends Component {
  const styles = StyleSheet.create({
    container: {
      flex: 1,
-     backgroundColor: '#fff',
+     backgroundColor: '#364851',
      alignItems: 'center',
-     justifyContent: 'center',
+     justifyContent: 'center'
+
    },
  });

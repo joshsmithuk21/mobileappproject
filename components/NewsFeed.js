@@ -66,9 +66,9 @@ deleteItem(id){
         <View
           style={{
             height: 5  ,
-            width: '86%',
-            backgroundColor: '#CED0CE',
-            marginLeft: '15%'
+            width: '100%',
+            backgroundColor: '#db0000',
+            //marginLeft: '15%'
           }}
         />
       );
@@ -94,7 +94,7 @@ deleteItem(id){
     					renderItem={({ item }) => (
     						<TouchableOpacity>
     							<ListItem
-    								onPress={() => alert("View Profile")}
+                   onPress={() => alert("View Profile")}
     								title={`${item.user.given_name} ${item.user.family_name}`}
     								subtitle={item.user.email}
                    />
