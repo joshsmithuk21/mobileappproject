@@ -62,46 +62,44 @@ deleteItem(id){
       });
     }
 
-  renderSeparator = () => {
-      return (
-        <View
-          style={{
-            height: 5  ,
-            width: '100%',
-            backgroundColor: '#db0000',
-            //marginLeft: '15%'
-          }}
-        />
-      );
-    };
+    renderSeparator = () => {
+        return (
+          <View
+            style={{
+              height: 5  ,
+              width: '100%',
+              backgroundColor: '#db0000',
 
+            }}
+          />
+        );
+      };
     render() {
   		if (this.state.loading) {
   			return (
 
   				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',}}>
-  					<ActivityIndicator
-
-             />
+  					<ActivityIndicator/>
   				</View>
   			);
   		}else{
         console.log("DATA", this.state.data[0]);
     		return (
-    			<View style={{ flexGrow: 0, paddingBottom:300 }}>
+    			<View style={{ flexGrow: 1, paddingBottom:300 }}>
           <Image style={{width: 400, height: 160}} source={require('../images/welcomebanner1.jpg')} />
     				<FlatList
     					data={this.state.data}
     					renderItem={({ item }) => (
-    						<TouchableOpacity>
+    						<TouchableOpacity style ={styles.chits}>
     							<ListItem
-                   onPress={() => alert("View Profile")
-                    leftAvatar={{ source: { uri: item.picture.thumbnail } }} //If the users have profile pictures
+                   onPress={() => alert("View Profile")}
+              //      leftAvatar={{ source:{uri:item.picture.thumbnail}}} //If the users have profile pictures
     								title={`${item.user.given_name} ${item.user.family_name}`}
     								subtitle={item.user.email}
+
                    />
                    <ListItem
-                     title={item.chit_content}
+                  title={item.chit_content}
                      />
     						</TouchableOpacity>
 
@@ -136,3 +134,13 @@ deleteItem(id){
     }
   	}
   }
+
+const styles = StyleSheet.create({
+
+  chits: {
+    backgroundColor: '#db0000',
+    borderBottomColor: '#a19187',
+    color: '#a19187',
+  }
+
+})
