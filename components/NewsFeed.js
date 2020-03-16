@@ -43,16 +43,22 @@ deleteItem(id){
     });
   }
 
-    fetchData = async () => {
+    fetchData = async (done) => {
       const response = await fetch('http://10.0.2.2:3333/api/v0.0.5/chits');
       const json = await response.json();
       this.setState({
           isLoading: false,
-          data: json.results });
+          data: json
+      },
+      () => {
+        done();
+      });
     };
 
     componentDidMount(){
-      this.fetchData();
+      this.fetchData(() => {
+        console.log("CB", this.state.isLoading);
+      });
     }
 
   renderSeparator = () => {
@@ -78,51 +84,53 @@ deleteItem(id){
              />
   				</View>
   			);
-  		}
-  		return (
-  			<View style={{ flexGrow: 0, paddingBottom:300 }}>
-        <Image style={{width: 400, height: 160}} source={require('../images/welcomebanner1.jpg')} />
-  				<FlatList
-  					data={this.state.data}
-  					renderItem={({ item }) => (
-  						<TouchableOpacity>
-  							<ListItem
-  								onPress={() => alert("View Profile")}
-  				//				leftAvatar={{ source: { uri: item.picture.thumbnail } }} //If the users have profile pictures
-  								title={`${item.given_name} ${item.family_name}`}
-  								subtitle={item.email}
-                 />
-                 <ListItem
-                   title={item.chit_content}
+  		}else{
+        console.log("DATA", this.state.data[0]);
+    		return (
+    			<View style={{ flexGrow: 0, paddingBottom:300 }}>
+          <Image style={{width: 400, height: 160}} source={require('../images/welcomebanner1.jpg')} />
+    				<FlatList
+    					data={this.state.data}
+    					renderItem={({ item }) => (
+    						<TouchableOpacity>
+    							<ListItem
+    								onPress={() => alert("View Profile")}
+    								title={`${item.user.given_name} ${item.user.family_name}`}
+    								subtitle={item.user.email}
                    />
-  						</TouchableOpacity>
+                   <ListItem
+                     title={item.chit_content}
+                     />
+    						</TouchableOpacity>
 
-  					)}
+    					)}
 
-  					keyExtractor={({id}, item) => id}
-  					ItemSeparatorComponent={this.renderSeparator}
-  							initialNumToRender={15}
-  					maxToRenderPerBatch={2}
-  					removeClippedSubviews={true}
-  					onEndReachedThreshold={0.5}
-  					onEndReached={() => alert('Please Refresh For More Tweets')}
-  				/>
+    					keyExtractor={({id}, item) => id}
+    					ItemSeparatorComponent={this.renderSeparator}
+    					ListHeaderComponent={this.renderHeader}
+    					initialNumToRender={15}
+    					maxToRenderPerBatch={2}
+    					removeClippedSubviews={true}
+    					onEndReachedThreshold={0.5}
+    					onEndReached={() => alert('Please Refresh For More Tweets')}
+    				/>
 
 
-        <View style={{margin:20,flex:1}} />
+          <View style={{margin:20,flex:1}} />
 
-            <Button
-               title="New Tweet"
-               onPress={() => this.props.navigation.navigate('NewTweet')}
+              <Button
+                 title="New Tweet"
+                 onPress={() => this.props.navigation.navigate('NewTweet')}
+                 />
+
+          <View style={{margin:10,flex:1}} />
+                     <Button
+             onPress={this.props.onLogoutPress}
+             title="Logout"
                />
 
-        <View style={{margin:10,flex:1}} />
-                   <Button
-           onPress={this.props.onLogoutPress}
-           title="Logout"
-             />
-
-      	</View>
-  		);
+        	</View>
+    		);
+    }
   	}
   }
