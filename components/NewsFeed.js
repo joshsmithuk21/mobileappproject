@@ -136,7 +136,6 @@ deleteItem(id){
   }
 
 const styles = StyleSheet.create({
-
   chits: {
     backgroundColor: '#db0000',
     borderBottomColor: '#a19187',
