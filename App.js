@@ -5,7 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './screens/Login';
 import NewsFeed from './screens/NewsFeed';
-import NewTweet from './screens/NewTweet';
+import NewTweet from './screens/NewChit';
 import Signup from './screens/Signup';
 
 

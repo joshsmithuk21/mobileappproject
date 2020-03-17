@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, StyleSheet } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-export default class NewTweet extends Component {
+export default class NewChit extends Component {
   constructor(props) {
     super(props);
     this.state = {chit_content: ''}
@@ -46,9 +46,8 @@ export default class NewTweet extends Component {
     return (
 
 
-          <View style ={styles.newtweet}>
-            <Text style ={styles.header}> Sign Up!</Text>
-
+          <View style ={styles.newchit}>
+            <Text style ={styles.header}>Chit To Your Hearts Content</Text>
             <TextInput style={styles.textinput} placeholder ="Write Your New Tweet Here"
               underlinecolorAndroid = {'transparent'}
               onChangeText ={(text)=>this.updateValue(text,'chit_content')}
@@ -56,8 +55,10 @@ export default class NewTweet extends Component {
               />
 
               <TouchableOpacity style ={styles.button}>
-              onPress={()=>this.submit()}
-                <Text style={styles.btntext}>Sign Up</Text>
+              <Button
+                Press={()=>this.submit()}
+                title ="Post Chit!"
+                />
               </TouchableOpacity>
             </View>
           );
@@ -70,22 +71,26 @@ const styles = StyleSheet.create({
 
         alignSelf: 'stretch',
     },
+    newchit:{
+      borderColor:'#a19187',
 
+    },
     header: {
       fontSize: 24,
-      color: '#fff',
+      color: '#fc0703',
       paddingBottom: 10,
       marginBottom: 40,
       borderBottomColor: '#a19187',
+      alignItems:'center',
+      fontWeight: 'bold',
     },
     textinput:{
       alignSelf: 'stretch',
-      height: 40,
+      height: 300,
       marginBottom: 30,
-      color: '#fff',
-      borderBottomColor:'#af8f8f',
+      color: '#000000',
       borderBottomWidth: 1,
-      borderColor:'#000000'
+      borderColor:'#000000',
     },
 
     button:{
@@ -96,9 +101,4 @@ const styles = StyleSheet.create({
       marginTop:30,
     },
 
-    btntext: {
-      color: '#fff',
-      fontWeight: 'bold',
-
-    }
 });

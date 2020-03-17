@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import NewsFeed from './NewsFeed';
-import NewTweet from './NewTweet';
+import NewTweet from './NewChit';
 import Signup from './Signup';
 
 export default class Login extends Component {
@@ -43,13 +43,13 @@ export default class Login extends Component {
         <View style={{paddingBottom: 10}} />
         <Button
         title="Submit"
-	      onPress={this.props.navigation.navigate('NewsFeed')}
+	      onPress={()=> this.props.navigation.navigate('NewsFeed')}
 
               />
 
         <View style={{paddingTop: 10}} />
         <Button
-	      onPress={this.props.navigation.navigate('Signup')}
+	      onPress={()=>this.props.navigation.navigate('Signup')}
                   title="Sign Up"
               />
           </ScrollView>

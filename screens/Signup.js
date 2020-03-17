@@ -104,7 +104,7 @@ signup: {
 
 header: {
   fontSize: 50,
-  color: '#000000',
+  color: '#fc0703',
   paddingBottom: 10,
   marginBottom: 40,
   borderBottomColor: '#a19187',

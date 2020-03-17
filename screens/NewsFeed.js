@@ -16,7 +16,7 @@ import { ListItem, SearchBar } from 'react-native-elements';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useIsFocused } from "@react-navigation/core";
 
-import NewTweet from './NewTweet';
+import NewTweet from './NewChit';
 
 class NewsFeed extends Component {
   constructor(props){
@@ -24,10 +24,7 @@ class NewsFeed extends Component {
     this.state ={
 	isLoading: true,
 	data:[]	} 	    //anything added to this array will then show in the this.state.data line below
-
-
     }
-
 
 deleteItem(id){
   return fetch('http://10.0.2.2:3333/list/' + id, {
@@ -118,18 +115,15 @@ deleteItem(id){
 
           <View style={{margin:20,flex:1}} />
 
-              <Button
-                 title="New Tweet"
-                 onPress={() =>  this.props.navigation.navigate('NewTweet')}
-
-                 />
-
-          <View style={{margin:10,flex:1}} />
-                     <Button
-             onPress={this.props.onLogoutPress}
-             title="Logout"
+            <Button
+               title="New Tweet"
+               onPress={() =>  this.props.navigation.navigate('NewTweet')}
                />
-
+          <View style={{margin:10,flex:1}} />
+           <Button
+              title="Logout"
+              onPress={() =>  this.props.navigation.navigate('Logout')}
+              />
         	</View>
     		);
     }
