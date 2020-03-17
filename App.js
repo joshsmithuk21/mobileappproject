@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
 import 'react-native-gesture-handler';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { NavigationNativeContainer } from '@react-navigation/native'
+import {createStackNavigator} from '@react-navigation/stack'
 import Login from './components/Login';
 import NewsFeed from './components/NewsFeed';
 import NewTweet from './components/NewTweet';
@@ -20,7 +20,7 @@ export default class app extends Component {
 
 
  render() {
-
+  return<NavigationNativeContainer></NavigationNativeContainer>
 
 	if (this.state.isLoggedIn)
 	return < NewsFeed
