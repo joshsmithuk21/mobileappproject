@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, Alert } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -22,12 +22,11 @@ export default class NewChit extends Component {
   submit()
   {
     let collection={}
-    collection.chit_conten=this.state.chit_content,
+    collection.chit_content=this.state.chit_content,
 
     console.warn(collection);
 
-
-  fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
+  fetch('http://10.0.2.2:3333/api/v0.0.5/', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -44,19 +43,18 @@ export default class NewChit extends Component {
   }
   render() {
     return (
-
-
           <View style ={styles.newchit}>
-            <Text style ={styles.header}>Chit To Your Hearts Content</Text>
-            <TextInput style={styles.textinput} placeholder ="Write Your New Tweet Here"
+            <Text style ={styles.header}> Chit To Your Hearts Content </Text>
+            <TextInput style={styles.textinput} placeholder ="                              Write Your New Chit Here"
+              maxLength = {144}               //simple method to limit max amount of characters a user can input
               underlinecolorAndroid = {'transparent'}
               onChangeText ={(text)=>this.updateValue(text,'chit_content')}
-              maxLength = {144} //simple method to limit max amount of characters a user can input
               />
 
               <TouchableOpacity style ={styles.button}>
+                  <View style={{paddingBottom: 10, width: "95%"}} />
               <Button
-                Press={()=>this.submit()}
+                onPress={()=>this.submit()}
                 title ="Post Chit!"
                 />
               </TouchableOpacity>
@@ -68,29 +66,28 @@ export default class NewChit extends Component {
 
 const styles = StyleSheet.create({
     signup: {
+        alignItems:'center',
 
-        alignSelf: 'stretch',
     },
     newchit:{
       borderColor:'#a19187',
 
     },
     header: {
-      fontSize: 24,
+      fontSize: 30,
+      alignSelf: 'stretch',
       color: '#fc0703',
       paddingBottom: 10,
       marginBottom: 40,
-      borderBottomColor: '#a19187',
-      alignItems:'center',
       fontWeight: 'bold',
     },
     textinput:{
       alignSelf: 'stretch',
-      height: 300,
+      height: 150,
       marginBottom: 30,
       color: '#000000',
-      borderBottomWidth: 1,
-      borderColor:'#000000',
+      borderWidth: 1,
+      alignItems:'center',
     },
 
     button:{
@@ -99,6 +96,10 @@ const styles = StyleSheet.create({
       padding: 20,
       backgroundColor: '#59cbbd',
       marginTop:30,
+    },
+    btnstyle:{
+      width:"50%",
+      backgroundColor: '#59cbbd',
     },
 
 });

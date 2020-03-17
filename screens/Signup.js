@@ -66,7 +66,6 @@ class Signup extends Component{
         <TextInput style={styles.textinput} placeholder ="First Name"
           underlinecolorAndroid = {'transparent'}
           onChangeText ={(text)=>this.updateValue(text,'given_name')}
-
           />
 
         <TextInput style={styles.textinput} placeholder ="Last Name"
@@ -115,7 +114,7 @@ textinput:{
   alignSelf: 'stretch',
   height: 40,
   marginBottom: 30,
-  color: '#fff',
+  color: '#000000',
   borderBottomColor:'#af8f8f',
   backgroundColor:'#59cbbd',
   borderBottomWidth: 1,
