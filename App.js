@@ -1,56 +1,49 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
 import 'react-native-gesture-handler';
-import { NavigationNativeContainer } from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack'
-import Login from './components/Login';
-import NewsFeed from './components/NewsFeed';
-import NewTweet from './components/NewTweet';
-import Singup from './components/Signup';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Login from './screens/Login';
+import NewsFeed from './screens/NewsFeed';
+import NewTweet from './screens/NewTweet';
+import Signup from './screens/Signup';
 
 
-export default class app extends Component {
- constructor(props){
-  super(props);
-   this.state = {
-       isLoggedIn: false,
+ // class app extends Component {
+ // constructor(props){
+ //  super(props);
+ //   this.state = {
+ //       isLoggedIn: false,
+ //
+ //     }
+ // }
+ //
+ //
+ // render() {
+ //
+ //
+	// if (this.state.isLoggedIn)
+	// return < NewsFeed
+ //
+	// 	onLogoutPress={() => this.setState({isLoggedIn: false})}
+	// 	/>;
+	// else
+	// 	return <Login
+	// 		onLoginPress={() => this.setState({isLoggedIn: true})}
+	// 	/>;
+ //
+ //
+	// }
+ //
+ // }
 
-     }
- }
-
-
- render() {
-  return<NavigationNativeContainer></NavigationNativeContainer>
-
-	if (this.state.isLoggedIn)
-	return < NewsFeed
-
-		onLogoutPress={() => this.setState({isLoggedIn: false})}
-		/>;
-	else
-		return <Login
-			onLoginPress={() => this.setState({isLoggedIn: true})}
-		/>;
-    return <AppContainer />;
-
-    <View style = {styles.container}>
-      <Signup />
-      </View>
-	}
-
- }
-
- const AppNavigator = createStackNavigator({
-
-   NewsFeed:{
-     screen: NewsFeed
-   },
-   NewTweet: {
-     screen: NewTweet
-   }
- });
-
- const AppContainer = createAppContainer(AppNavigator);
+const AppStackNav = createStackNavigator({
+  Home: {screen: Login},
+  Signup:{screen: Signup },
+  NewTweet:{screen:NewTweet },
+  NewsFeed:{screen:NewsFeed }
+});
+const AppContainer = createAppContainer(AppStackNav)
 
  const styles = StyleSheet.create({
    container: {
@@ -61,3 +54,4 @@ export default class app extends Component {
 
    },
  });
+export default AppContainer;

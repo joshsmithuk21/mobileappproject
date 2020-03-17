@@ -27,7 +27,7 @@ export default class NewTweet extends Component {
     console.warn(collection);
 
 
-  fetch('http://10.0.2.2:3333/api/v0.0.5/', {
+  fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export default class NewTweet extends Component {
 
               <TouchableOpacity style ={styles.button}>
               onPress={()=>this.submit()}
-                <Text style={styles.btntext}Sign Up />
+                <Text style={styles.btntext}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           );

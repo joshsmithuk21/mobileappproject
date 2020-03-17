@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {ScrollView,Text,TextInput,View,Button, TouchableOpacity,StyleSheet} from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useIsFocused } from "@react-navigation/core";
 
 
-export default class Signup extends Component{
+class Signup extends Component{
 
   constructor()
   {
@@ -39,8 +41,7 @@ export default class Signup extends Component{
     collection.email=this.state.email
     console.warn(collection);
 
-
-    fetch('http://10.0.2.2:3333/api/v0.0.5/',{
+    fetch('http://10.0.2.2:3333/api/v0.0.5/user',{
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -77,8 +78,10 @@ export default class Signup extends Component{
           onChangeText ={(text)=>this.updateValue(text,'email')}/>
 
           <TouchableOpacity style ={styles.button}>
+          <Button
             onPress={()=>this.submit()}
-            <Text style={styles.btntext}>"Sign Up</Text>
+            title= "Create Account"
+            />
           </TouchableOpacity>
           </View>
         );
@@ -90,18 +93,23 @@ export default class Signup extends Component{
           //   secureTextEntry={true}
           //   underlinecolorAndroid = {'transparent'} />
 
+export default Signup;
 const styles = StyleSheet.create({
 signup: {
 
     alignSelf: 'stretch',
+    alignItems:'center',
+
 },
 
 header: {
-  fontSize: 24,
-  color: '#fff',
+  fontSize: 50,
+  color: '#000000',
   paddingBottom: 10,
   marginBottom: 40,
   borderBottomColor: '#a19187',
+  fontWeight: 'bold',
+
 },
 textinput:{
   alignSelf: 'stretch',
@@ -109,6 +117,7 @@ textinput:{
   marginBottom: 30,
   color: '#fff',
   borderBottomColor:'#af8f8f',
+  backgroundColor:'#59cbbd',
   borderBottomWidth: 1,
 },
 
@@ -121,7 +130,7 @@ button:{
 },
 
 btntext: {
-  color: '#fff',
+  color: 'black',
   fontWeight: 'bold',
 }
 

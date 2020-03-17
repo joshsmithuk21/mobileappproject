@@ -13,12 +13,12 @@ import {
   RefreshControl
 } from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useIsFocused } from "@react-navigation/core";
 
 import NewTweet from './NewTweet';
 
-export default class NewsFeed extends Component {
+class NewsFeed extends Component {
   constructor(props){
     super(props);
     this.state ={
@@ -120,7 +120,8 @@ deleteItem(id){
 
               <Button
                  title="New Tweet"
-                 onPress={() => this.props.navigation.navigate('NewTweet')}
+                 onPress={() =>  this.props.navigation.navigate('NewTweet')}
+
                  />
 
           <View style={{margin:10,flex:1}} />
@@ -134,7 +135,7 @@ deleteItem(id){
     }
   	}
   }
-
+export default NewsFeed;
 const styles = StyleSheet.create({
   chits: {
     backgroundColor: '#db0000',

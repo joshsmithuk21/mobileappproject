@@ -8,6 +8,10 @@ import {
 	Image
 } from 'react-native';
 
+import NewsFeed from './NewsFeed';
+import NewTweet from './NewTweet';
+import Signup from './Signup';
+
 export default class Login extends Component {
 
     render() {
@@ -34,19 +38,21 @@ export default class Login extends Component {
 				   autoCorrect={false}
 			/>
 
-                <View style={{ height: 100}} />
-                <Button
-					      onPress={this.props.onLoginPress}
-                          title="Submit"
-                      />
 
 
-                <View style={{paddingTop: 10}} />
-                <Button
-					      onPress={this.props.onSignUpPress}
-                          title="Sign Up"
-                      />
-                  </ScrollView>
-            )
+        <View style={{paddingBottom: 10}} />
+        <Button
+        title="Submit"
+	      onPress={this.props.navigation.navigate('NewsFeed')}
+
+              />
+
+        <View style={{paddingTop: 10}} />
+        <Button
+	      onPress={this.props.navigation.navigate('Signup')}
+                  title="Sign Up"
+              />
+          </ScrollView>
+    )
 		}
 	}
