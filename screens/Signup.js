@@ -12,7 +12,8 @@ class Signup extends Component{
     this.state={
       email:'',
       given_name:'',
-      family_name:''
+      family_name:'',
+      password:''
     }
   }
 
@@ -33,13 +34,20 @@ class Signup extends Component{
           family_name:text,
         })
       }
+      else if (field == 'password'){
+          this.setState({
+            password:text,
+          })
+        }
   }
   submit(){
-    let collection={}
-    collection.given_name=this.state.given_name,
-    collection.family_name=this.state.family_name,
-    collection.email=this.state.email
-    console.warn(collection);
+    let collection = {
+      "given_name": this.state.given_name,
+      "family_name": this.state.family_name,
+      "email": this.state.email,
+      "password": this.state.password
+      }
+    console.warn(collection); // Shows the inputted user credentials
 
     fetch('http://10.0.2.2:3333/api/v0.0.5/user',{
       method: 'POST', // or 'PUT'
@@ -76,6 +84,10 @@ class Signup extends Component{
           underlinecolorAndroid = {'transparent'}
           onChangeText ={(text)=>this.updateValue(text,'email')}/>
 
+          <TextInput style={styles.textinput} placeholder ="Password"
+            secureTextEntry={true}
+            underlinecolorAndroid = {'transparent'}
+            onChangeText ={(text)=>this.updateValue(text,'password')}/>
           <TouchableOpacity style ={styles.button}>
           <Button
             onPress={()=>this.submit()}
@@ -88,9 +100,7 @@ class Signup extends Component{
       }
     }
 
-          // <TextInput style={styles.textinput} placeholder ="Password"
-          //   secureTextEntry={true}
-          //   underlinecolorAndroid = {'transparent'} />
+
 
 export default Signup;
 const styles = StyleSheet.create({
