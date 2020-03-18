@@ -84,13 +84,13 @@ deleteItem(id){
     		return (
     			<View style={{ flexGrow: 1, paddingBottom:300 }}>
           <Image style={{width: 400, height: 160}} source={require('../images/welcomebanner1.jpg')} />
-    				<FlatList
+    				<FlatList style = {{height: 400}}
     					data={this.state.data}
     					renderItem={({ item }) => (
     						<TouchableOpacity style ={styles.chits}>
     							<ListItem
                    onPress={() => alert("View Profile")}
-              //      leftAvatar={{ source:{uri:item.picture.thumbnail}}} //If the users have profile pictures
+                    leftAvatar={{ source:{uri:item.user.thumbnail}}} //If the users have profile pictures
     								title={`${item.user.given_name} ${item.user.family_name}`}
     								subtitle={item.user.email}
 
@@ -113,9 +113,9 @@ deleteItem(id){
     				/>
 
 
-          <View style={{margin:20,flex:1}} />
+          <View style={{flex:1}} />
 
-            <Button
+            <Button 
                title="New Tweet"
                onPress={() =>  this.props.navigation.navigate('NewTweet')}
                />
@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#db0000',
     borderBottomColor: '#a19187',
     color: '#a19187',
+
   },
   btn:{
     color: '#a19187',
