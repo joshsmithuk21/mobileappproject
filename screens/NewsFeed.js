@@ -115,7 +115,7 @@ deleteItem(id){
 
           <View style={{flex:1}} />
 
-            <Button 
+            <Button
                title="New Tweet"
                onPress={() =>  this.props.navigation.navigate('NewTweet')}
                />

@@ -10,25 +10,18 @@ export default class NewChit extends Component {
     super(props);
     this.state ={
       chit_content: '',
-      timestamp: timestamp
+      timestamp: timestamp,
+
 
       }
     }
-
 
   updateValue(text, field){
     if(field == 'chit_content')
     {
       this.setState({
         chit_content:text,
-        //need time stamps
-      })
-      if(field =='timestamp')
-      {
-          this.setState({
-          timestamp:timestamp,
         })
-      }
     }
   }
 
@@ -37,8 +30,9 @@ export default class NewChit extends Component {
     let collection={
     "chit_content": this.state.chit_content,
     "timestamp": this.state.timestamp
+
    }
-      console.warn(collection);
+      console.log(collection);
 
   fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
       method: 'POST',
