@@ -41,6 +41,11 @@ class Signup extends Component{
         }
   }
   submit(){
+    
+    this.validate({
+    password: {minlength:3, maxlength:15, required: true},
+    email: {email: true},
+    });
     let collection = {
       "given_name": this.state.given_name,
       "family_name": this.state.family_name,

@@ -3,11 +3,15 @@ import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, Alert } fr
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
+
 export default class NewChit extends Component {
   constructor(props) {
     super(props);
-    this.state = {chit_content: ''}
-  }
+    this.state ={
+      chit_content: '',
+      timestamp: ''
+      }
+    }
 
 
   updateValue(text, field){
@@ -22,12 +26,14 @@ export default class NewChit extends Component {
 
   submit()
   {
-    let collection={}
-    collection.chit_content=this.state.chit_content,
+    let collection={
+    "chit_id":this.state.chit_id,
+    "chit_content": this.state.chit_content,
+    "timestamp": this.state.timestamp
+   }
+      console.warn(collection);
 
-    console.warn(collection);
-
-  fetch('http://10.0.2.2:3333/api/v0.0.5/', {
+  fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +49,9 @@ export default class NewChit extends Component {
     });
   }
   render() {
+    const timestamp = Date.now();
     return (
+
           <View style ={styles.newchit}>
             <Text style ={styles.header}> Chit To Your Hearts Content </Text>
             <TextInput style={styles.textinput} placeholder ="                              Write Your New Chit Here"
