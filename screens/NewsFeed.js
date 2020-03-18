@@ -75,7 +75,7 @@ deleteItem(id){
   		if (this.state.loading) {
   			return (
 
-  				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',}}>
+  				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor: '#59cbbd'}}>
   					<ActivityIndicator/>
   				</View>
   			);
@@ -135,6 +135,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#db0000',
     borderBottomColor: '#a19187',
     color: '#a19187',
-  }
+  },
+  btn:{
+    color: '#a19187',
+  },
 
 })

@@ -15,6 +15,7 @@ export default class NewChit extends Component {
     {
       this.setState({
         chit_content:text,
+        //need time stamps
       })
     }
   }
