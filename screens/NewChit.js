@@ -11,7 +11,7 @@ export default class NewChit extends Component {
     this.state ={
       chit_content: '',
       timestamp: timestamp,
-
+      token:'',
 
       }
     }
@@ -29,7 +29,8 @@ export default class NewChit extends Component {
   {
     let collection={
     "chit_content": this.state.chit_content,
-    "timestamp": this.state.timestamp
+    "timestamp": this.state.timestamp,
+    "token":this.state.token
 
    }
       console.log(collection);

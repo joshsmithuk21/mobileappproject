@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, Button, StyleSheet, Alert } from 'react-native';
+import { Text, TextInput, View, Button, StyleSheet, Alert,AppRegistry, AsyncStorage } from 'react-native';
 import 'react-native-gesture-handler';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -7,7 +7,6 @@ import Login from './screens/Login';
 import NewsFeed from './screens/NewsFeed';
 import NewTweet from './screens/NewChit';
 import Signup from './screens/Signup';
-
 
  // class app extends Component {
  // constructor(props){
@@ -41,7 +40,7 @@ const AppStackNav = createStackNavigator({
   Home: {screen: Login},
   Signup:{screen: Signup },
   NewTweet:{screen:NewTweet },
-  NewsFeed:{screen:NewsFeed }
+  NewsFeed:{screen:NewsFeed },
 });
 const AppContainer = createAppContainer(AppStackNav)
 
@@ -54,4 +53,7 @@ const AppContainer = createAppContainer(AppStackNav)
 
    },
  });
+
+
+
 export default AppContainer;

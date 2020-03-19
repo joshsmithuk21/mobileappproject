@@ -8,6 +8,8 @@
     "@react-navigation/native": "^5.1.0",
     "@react-navigation/stack": "^5.2.1",
     "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "react": "16.9.0",
     "react-dom": "^16.13.0",
     "react-moment": "^0.9.7",
@@ -25,7 +27,8 @@
     "react-navigation-tabs": "^2.8.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "android": "react-native run-android",

@@ -6,11 +6,13 @@ import {
     View,
     Button,
   	Image,
-    AppRegistry
+    AppRegistry,
+    ActivityIndicator,
+    Alert
+
 } from 'react-native';
 
-import NewsFeed from './NewsFeed';
-import NewTweet from './NewChit';
+import NewsFeed from './NewsFeed'
 import Signup from './Signup';
 
 export default class Login extends Component {
@@ -19,92 +21,125 @@ export default class Login extends Component {
     this.state ={
       email:'',
       password: '',
-      //isLoggingIn: false,
+      isLoggingIn: false,
+      message: '',
+      name: '',
+      data:[]
 
       }
     }
+
 
     updateValue(text, field){
-    if (field == 'email'){
+
+     if(field == 'email')
+      {
         this.setState({
           email:text,
-        })
-      }
-
-      else if (field == 'password'){
-          this.setState({
-            password:text,
           })
-        }
+      }
+   else if(field == 'password')
+      {
+        this.setState({
+          password:text,
+          })
+      }
     }
 
-    submit(){
 
-    let collection = {
+    submit()
+    {
+      let collection={
       "email": this.state.email,
-      "password": this.state.password
-      }
-    console.warn(collection);
+      "password": this.state.password,
+    //  "token":this.state.token
 
-    fetch('http://10.0.2.2:3333/api/v0.0.5/login',{
-          method: 'POST', // or 'PUT'
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(collection),
-        })
-        .then((response) => response.json())
-        .then((collection) => {
-          console.log('Account Created:', collection);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+     }
+        console.log(collection);
+
+
+
+    fetch('http://10.0.2.2:3333/api/v0.0.5/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept' : 'application/json'
+        },
+        body: JSON.stringify(collection),
+      }).then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.status== HttpStatusCode.OK) {
+                  Alert.alert(responseJson.message);
+              } else {
+                  this.props.navigation.navigate('Signup');
+              }
+
+          }).catch((error) => {
+          console.error(error);
+      });
+  }
+
+
+      clearemail = () => {
+          this._email.setNativeProps({ text: '' });
+          this.setState({ message: '' });
       }
 
+      clearPassword = () => {
+          this._password.setNativeProps({ text: '' });
+          this.setState({ message: '' });
+      }
 
     render() {
-        return (
 
-            <ScrollView style={{padding: 20}}>
-                <Image
-					style={{width: 200, height: 200,marginLeft: 70,marginBottom: 100 }}
+      return (
+        <ScrollView style={{padding: 20}}>
+          <Image	style={{width: 200, height: 200,marginLeft: 70,marginBottom: 100 }}
 					source={require('../images/chittrlogo.png')}
 				/>
 
                 <TextInput
 				   style={{ height: 40, width: "95%", borderColor: 'gray', borderWidth: 2,  marginBottom: 20,marginLeft: 5 }}
-           onChangeText ={(text)=>this.updateValue(text,'email')}
+           ref={component => this._email = component}
+           onChangeText={(text) => this.updateValue(text,'email')}
 				   placeholder="Email Address"
 				   placeholderTextColor="#000000"
-				   secureTextEntry ={false}
-				   autoCorrect={false} />
+           autoFocus={true}
+           secureTextEntry ={false}
+           onFocus={this.clearemail}/>
 
 				<TextInput
 				   style={{ height: 40, width: "95%", borderColor: 'gray', borderWidth: 2, marginLeft: 5 }}
-           onChangeText ={(text)=>this.updateValue(text,'password')}
+           ref={component => this._password = component}
+                   onChangeText={(text) => this.updateValue(text,'password')}
 				   placeholder="Password"
 				   placeholderTextColor="#000000"
 				   secureTextEntry ={true}
 				   password={true}
-				   autoCorrect={false}
-			/>
+	         onFocus={this.clearPassword}
+    			/>
 
-
+      {!!this.state.message && (
+				<Text
+					style={{fontSize: 14, color: 'red', padding: 5}}>
+					{this.state.message}
+				</Text>
+  		)}
 
         <View style={{paddingBottom: 10}} />
         <Button
-        title="Submit"
-	      onPress={()=> this.props.navigation.navigate('NewsFeed')}
+        title="Sign Up Here!"
+	      onPress={()=> this.props.navigation.navigate('Signup')}
+        />
 
-              />
-
-        <View style={{paddingTop: 10}} />
-        <Button
-	      onPress={()=>this.props.navigation.navigate('Signup')}
-                  title="Sign Up"
-              />
-          </ScrollView>
+				{this.state.isLoggingIn && <ActivityIndicator />}
+				<View style={{margin:7}} />
+				<Button
+					disabled={this.state.isLoggingIn||!this.state.email||!this.state.password}//stops people typing in when application is contacting server
+		      		  onPress={()=>this.submit()}
+		      		title="Submit"
+          />
+      </ScrollView>
     )
-		}
 	}
+}
