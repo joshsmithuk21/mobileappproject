@@ -8,10 +8,11 @@ import {
   	Image,
     AppRegistry,
     ActivityIndicator,
-    Alert
+    Alert,
+
 
 } from 'react-native';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import NewsFeed from './NewsFeed'
 import Signup from './Signup';
 
@@ -24,7 +25,9 @@ export default class Login extends Component {
       isLoggingIn: false,
       message: '',
       name: '',
-      data:[]
+      data:[],
+      id:'',
+      token:''
 
       }
     }
@@ -60,24 +63,23 @@ export default class Login extends Component {
 
 
     fetch('http://10.0.2.2:3333/api/v0.0.5/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept' : 'application/json'
-        },
-        body: JSON.stringify(collection),
-      }).then((response) => response.json())
-        .then((responseJson) => {
-          if (responseJson.status === 200) {
-              this.props.navigation.navigate('NewFeed');
-
-              } else {
-                    Alert.alert(responseJson.message);
-              }
-
-          }).catch((error) => {
-          console.error(error);
-      });
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept' : 'application/json'
+      },
+      body: JSON.stringify(collection),
+    }).then((response) => response.json())
+      .then(async (data)=>{
+         try {
+           await AsyncStorage.setItem('token',data.token)
+           await AsyncStorage.setItem('id',data.id.toString()) //Needed to change to string in order for the value to be stored within 'data'
+           this.props.navigation.navigate("NewsFeed")
+         } catch (e) {
+           console.log("Error: ",e)
+            Alert(e)
+          }
+         })
   }
 
 
@@ -112,7 +114,7 @@ export default class Login extends Component {
 				<TextInput
 				   style={{ height: 40, width: "95%", borderColor: 'gray', borderWidth: 2, marginLeft: 5 }}
            ref={component => this._password = component}
-                   onChangeText={(text) => this.updateValue(text,'password')}
+           onChangeText={(text) => this.updateValue(text,'password')}
 				   placeholder="Password"
 				   placeholderTextColor="#000000"
 				   secureTextEntry ={true}

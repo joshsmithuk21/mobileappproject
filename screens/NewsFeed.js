@@ -9,14 +9,20 @@ import {
 	ActivityIndicator,
 	Image,
 	StyleSheet,
-  TouchableOpacity,
-  RefreshControl
+  TouchableOpacity
+
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { ListItem, SearchBar } from 'react-native-elements';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useIsFocused } from "@react-navigation/core";
 
 import NewTweet from './NewChit';
+
+
+
+
+
 
 class NewsFeed extends Component {
   constructor(props){
@@ -25,6 +31,8 @@ class NewsFeed extends Component {
 	isLoading: true,
 	data:[]	} 	    //anything added to this array will then show in the this.state.data line below
     }
+
+
 
 deleteItem(id){
   return fetch('http://10.0.2.2:3333/list/' + id, {
@@ -71,6 +79,8 @@ deleteItem(id){
           />
         );
       };
+
+
     render() {
   		if (this.state.loading) {
   			return (
@@ -122,13 +132,20 @@ deleteItem(id){
           <View style={{margin:10,flex:1}} />
            <Button
               title="Logout"
-              onPress={() =>  this.props.navigation.navigate('Logout')}
-              />
+              onPress={() => logout()}/>
         	</View>
     		);
     }
   	}
   }
+
+  const logout =()=>{
+    console.log("DATA", this.state.data[0]);
+    AsyncStorage.clear();
+   this.props.navigation.navigate("NewsFeed"); // if using react-navigation
+  }
+
+
 export default NewsFeed;
 const styles = StyleSheet.create({
   chits: {

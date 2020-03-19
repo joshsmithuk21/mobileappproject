@@ -39,6 +39,7 @@ export default class NewChit extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorisation': 'Bearer ' + generateKey(token)
       },
       body: JSON.stringify(collection),
     })
