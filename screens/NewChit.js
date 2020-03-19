@@ -2,24 +2,28 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, StyleSheet, TouchableOpacity, Button, Alert } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const timestamp = Date.now();
-
+const  token = AsyncStorage.getItem("token")
+const  id = AsyncStorage.getItem("id")
 export default class NewChit extends Component {
   constructor(props) {
     super(props);
     this.state ={
       chit_content: '',
       timestamp: timestamp,
-      token:'',
+      token: token,
+      id:id,
+      data:[]
 
       }
     }
 
   updateValue(text, field){
     if(field == 'chit_content')
-    {
-      this.setState({
+      {
+       this.setState({
         chit_content:text,
         })
     }
@@ -30,16 +34,18 @@ export default class NewChit extends Component {
     let collection={
     "chit_content": this.state.chit_content,
     "timestamp": this.state.timestamp,
-    "token":this.state.token
+    "token": this.state.token,
+    "id":this.state.id
+
 
    }
       console.log(collection);
-
+      console.log(token);
   fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorisation': 'Bearer ' + generateKey(token)
+        'X-Authorization': 'token',
       },
       body: JSON.stringify(collection),
     })

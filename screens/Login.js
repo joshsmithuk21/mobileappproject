@@ -8,9 +8,7 @@ import {
   	Image,
     AppRegistry,
     ActivityIndicator,
-    Alert,
-
-
+    Alert
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import NewsFeed from './NewsFeed'
@@ -80,6 +78,9 @@ export default class Login extends Component {
             Alert(e)
           }
          })
+         .catch(() => {
+        alert('The Account Not Found, Please Sign Up');
+      })
   }
 
 

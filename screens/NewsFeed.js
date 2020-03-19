@@ -9,7 +9,7 @@ import {
 	ActivityIndicator,
 	Image,
 	StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
 
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -18,11 +18,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useIsFocused } from "@react-navigation/core";
 
 import NewTweet from './NewChit';
-
-
-
-
-
 
 class NewsFeed extends Component {
   constructor(props){
@@ -132,7 +127,8 @@ deleteItem(id){
           <View style={{margin:10,flex:1}} />
            <Button
               title="Logout"
-              onPress={() => logout()}/>
+                 onPress={() => this.props.navigation.navigate('Login')}
+                 />
         	</View>
     		);
     }
@@ -140,9 +136,9 @@ deleteItem(id){
   }
 
   const logout =()=>{
-    console.log("DATA", this.state.data[0]);
-    AsyncStorage.clear();
-   this.props.navigation.navigate("NewsFeed"); // if using react-navigation
+    AsyncStorage.removeItem('token');
+   this.props.navigation.navigate("Login");
+     // if using react-navigation
   }
 
 
