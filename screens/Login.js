@@ -68,10 +68,11 @@ export default class Login extends Component {
         body: JSON.stringify(collection),
       }).then((response) => response.json())
         .then((responseJson) => {
-          if (responseJson.status== HttpStatusCode.OK) {
-                  Alert.alert(responseJson.message);
+          if (responseJson.status === 200) {
+              this.props.navigation.navigate('NewFeed');
+
               } else {
-                  this.props.navigation.navigate('Signup');
+                    Alert.alert(responseJson.message);
               }
 
           }).catch((error) => {
