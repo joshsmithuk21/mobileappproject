@@ -8,35 +8,7 @@ import NewsFeed from './screens/NewsFeed';
 import NewTweet from './screens/NewChit';
 import Signup from './screens/Signup';
 
- // class app extends Component {
- // constructor(props){
- //  super(props);
- //   this.state = {
- //       isLoggedIn: false,
- //
- //     }
- // }
- //
- //
- // render() {
- //
- //
-	// if (this.state.isLoggedIn)
-	// return < NewsFeed
- //
-	// 	onLogoutPress={() => this.setState({isLoggedIn: false})}
-	// 	/>;
-	// else
-	// 	return <Login
-	// 		onLoginPress={() => this.setState({isLoggedIn: true})}
-	// 	/>;
- //
- //
-	// }
- //
- // }
-
-const AppStackNav = createStackNavigator({
+const AppStackNav = createStackNavigator({ //created the navigation between components
   Home: {screen: Login},
   Signup:{screen: Signup },
   NewTweet:{screen:NewTweet },

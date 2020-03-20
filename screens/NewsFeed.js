@@ -10,7 +10,6 @@ import {
 	Image,
 	StyleSheet,
   TouchableOpacity,
-
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ListItem, SearchBar } from 'react-native-elements';
@@ -20,10 +19,6 @@ import { useIsFocused } from "@react-navigation/core";
 import NewTweet from './NewChit';
 import Login from './Login';
 
-const logout =()=>{
-  AsyncStorage.removeItem('token');
- this.props.navigation.navigate("Login");
-}
 
 const  id = AsyncStorage.getItem("id")
 class NewsFeed extends Component {
@@ -101,7 +96,7 @@ deleteItem(id){
     						<TouchableOpacity style ={styles.chits}>
     							<ListItem
                    onPress={() => alert("View Profile")}
-                    leftAvatar={{ source:{uri:item.user.thumbnail}}} //If the users have profile pictures
+                    leftAvatar={{ source:{uri:item.user.thumbnail}}}
     								title={`${item.user.given_name} ${item.user.family_name}`}
     								subtitle={item.user.email}
 

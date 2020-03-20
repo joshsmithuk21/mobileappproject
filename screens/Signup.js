@@ -3,7 +3,7 @@ import {ScrollView,Text,TextInput,View,Button, TouchableOpacity,StyleSheet} from
 import { createStackNavigator } from '@react-navigation/stack';
 import { useIsFocused } from "@react-navigation/core";
 
-
+import Login from './Login';
 class Signup extends Component {
 
   constructor()

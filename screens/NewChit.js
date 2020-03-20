@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const timestamp = Date.now();
 const  token = AsyncStorage.getItem("token")
-const  id = AsyncStorage.getItem("id")
+  const  chit_id = AsyncStorage.getItem("chit_id")
 
 export default class NewChit extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class NewChit extends Component {
       chit_content: '',
       timestamp: timestamp,
       token: token,
-      id:id,
+      chit_id:''
 
 
       }
@@ -36,25 +36,24 @@ export default class NewChit extends Component {
     let collection={
     "chit_content": this.state.chit_content,
     "timestamp": this.state.timestamp,
-    "token": this.state.token,
-    "id":this.state.id
-
-
+    "chit_id" : this.state.chit_id,
    }
+
   console.log(collection);
 
-  fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
+  fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {//Sending the new chit to the server
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Authorization': 'token',
+        'X-Authorization': this.state.token,
       },
       body: JSON.stringify(collection),
     })
     .then((response) => response.json())
     .then((collection) => {
-      console.log('Chit Sent!:', collection);
-    })
+      console.log('Chit Sent!:', collection.chit_id);
+      this.props.navigation.navigate("NewsFeed");
+            })
     .catch((error) => {
       console.error('Error:', error);
     });
@@ -64,13 +63,12 @@ export default class NewChit extends Component {
     return (
 
           <View style ={styles.newchit}>
-            <Text style ={styles.header}> Chit To Your Hearts Content </Text>
-            <TextInput style={styles.textinput} placeholder ="                              Write Your New Chit Here"
-              maxLength = {144}               //simple method to limit max amount of characters a user can input
+            <Text style ={styles.header}>Chit To Your Hearts Content</Text>
+            <TextInput style={styles.textinput} placeholder ="Write Your New Chit Here"
+              maxLength = {144}
               underlinecolorAndroid = {'transparent'}
               onChangeText ={(text)=>this.updateValue(text,'chit_content')}
               />
-
               <TouchableOpacity style ={styles.button}>
                   <View style={{paddingBottom: 10, width: "95%"}} />
               <Button
@@ -80,7 +78,6 @@ export default class NewChit extends Component {
               </TouchableOpacity>
             </View>
           );
-
         }
       }
 
