@@ -53,9 +53,7 @@ export default class Login extends Component {
       let collection={
       "email": this.state.email,
       "password": this.state.password,
-    //  "token":this.state.token
-
-     }
+      }
         console.log(collection);
 
 

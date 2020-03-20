@@ -18,26 +18,32 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useIsFocused } from "@react-navigation/core";
 
 import NewTweet from './NewChit';
+import Login from './Login';
 
+const logout =()=>{
+  AsyncStorage.removeItem('token');
+ this.props.navigation.navigate("Login");
+}
+
+const  id = AsyncStorage.getItem("id")
 class NewsFeed extends Component {
   constructor(props){
     super(props);
     this.state ={
 	isLoading: true,
-	data:[]	} 	    //anything added to this array will then show in the this.state.data line below
+	data:[]	} 	   //anything added to this array will then show in the this.state.data line below
+
     }
 
-
-
 deleteItem(id){
-  return fetch('http://10.0.2.2:3333/list/' + id, {
+  return fetch('http://10.0.2.2:3333/api/v0.0.5/' + id, {
       method: 'delete'
     })
     .then((response) => {
       this.getData();
     })
     .then((response) => {
-      Alert.alert("Item deleted")
+      Alert.alert("User deleted")
     })
     .catch((error) =>{
       console.log(error);
@@ -110,7 +116,7 @@ deleteItem(id){
     					keyExtractor={({id}, item) => id}
     					ItemSeparatorComponent={this.renderSeparator}
     					ListHeaderComponent={this.renderHeader}
-    					initialNumToRender={5}
+    					initialNumToRender={10}
     					maxToRenderPerBatch={2}
     					removeClippedSubviews={true}
     					onEndReachedThreshold={0.5}
@@ -135,11 +141,7 @@ deleteItem(id){
   	}
   }
 
-  const logout =()=>{
-    AsyncStorage.removeItem('token');
-   this.props.navigation.navigate("Login");
-     // if using react-navigation
-  }
+
 
 
 export default NewsFeed;

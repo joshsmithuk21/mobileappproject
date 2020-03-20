@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const timestamp = Date.now();
 const  token = AsyncStorage.getItem("token")
 const  id = AsyncStorage.getItem("id")
+
 export default class NewChit extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +16,7 @@ export default class NewChit extends Component {
       timestamp: timestamp,
       token: token,
       id:id,
-      data:[]
+
 
       }
     }
@@ -27,6 +28,7 @@ export default class NewChit extends Component {
         chit_content:text,
         })
     }
+
   }
 
   submit()
@@ -39,8 +41,8 @@ export default class NewChit extends Component {
 
 
    }
-      console.log(collection);
-      console.log(token);
+  console.log(collection);
+
   fetch('http://10.0.2.2:3333/api/v0.0.5/chits', {
       method: 'POST',
       headers: {
@@ -85,11 +87,11 @@ export default class NewChit extends Component {
 const styles = StyleSheet.create({
     signup: {
         alignItems:'center',
-
+        backgroundColor: '#59cbbd'
     },
     newchit:{
       borderColor:'#a19187',
-
+      backgroundColor: '#59cbbd'
     },
     header: {
       fontSize: 30,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
       marginBottom: 40,
       fontWeight: 'bold',
+      backgroundColor: '#59cbbd'
     },
     textinput:{
       alignSelf: 'stretch',
@@ -106,6 +109,7 @@ const styles = StyleSheet.create({
       color: '#000000',
       borderWidth: 1,
       alignItems:'center',
+      backgroundColor: '#59cbbd'
     },
 
     button:{
