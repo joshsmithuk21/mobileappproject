@@ -1,36 +1,32 @@
-# Project Title
+# Chittr - Mobile Application Assignment
 
 In this project I have designed a fully working front end application for a twitter duplicated named Chittr. This application has been created as part of my university third year.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Welcome to my README File that will aid in your installation and use of my Mobile Applications Coursework for my Final Year!  
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Before you can run the react native application there are a few applications I would suggest installing first and they are as follows:
 
-```
-Give examples
-```
+  1) Android Studios,
+  2) ATOM ,
+  3) Chittr Webserver
+  4) Node.js Command Line Interface
+
+
+Once all the above files are installed and fully functioning you can now following the 'Installing' section of this README file.
+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Before downloading the application you MUST follow the 'Prerequisites' section of this README file first!
+1) Download Zip File From Github,
+2) Extract Zip file,
+3) Go to the directory using the NPM Comandline
+4) Then type npx react-native run-android
+5) The application should then start booting up
 
 ## Running the tests
 
@@ -38,41 +34,25 @@ This project is set up to use [jest](https://facebook.github.io/jest/) for tests
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
 
 
-## Contributing
+## What is React Native?
+
+"React Native is an open-source mobile application framework created by Facebook. It is used to develop applications for Android, iOS, Web and UWP by enabling developers to use React along with native platform capabilities." 'Source - Facebook (2020)  https://reactnative.dev/
 
 ## Updating
 
 You should only need to update the global installation of create-react-native-app very rarely, ideally never.
-Updating the react-native-scripts dependency of your app should be as simple as bumping the version number in package.json and reinstalling your project's dependencies. Upgrading to a new version of React Native requires updating the react-native, react, and expo package versions, and setting the correct sdkVersion in app.json. See the versioning guide for up-to-date information about package version compatibility.
+Updating the react-native-scripts dependency on the app is as simple as updating version numbers in package.json and reinstalling your project's dependencies using npm install when within the project directory. Upgrading to a new version of React Native requires updating the react-native, react, and expo package versions, and setting the correct sdkVersion in app.json. See the versioning guide for up-to-date information about package version compatibility.
 
 ## Versioning
 
+  I have created branches at each pinnacle point of my application in order for rollback in order things were to go horribly wrong during my coding experience. 
 
 
 ## Authors
 
-* **Ashley Williams** - *Initial work*
+  **Ashley Williams** - *Initial work*
   **Joshua Roy Smith** -*Co-Author*
 
 
