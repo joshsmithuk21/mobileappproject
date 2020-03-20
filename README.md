@@ -34,7 +34,7 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+This project is set up to use [jest](https://facebook.github.io/jest/) for tests. Jest is the recommended testing platform by my university and is why we're using this way of testing.. Create test files in directories called `__tests__` or with the `.test` extension to have the files loaded by jest. See the [the template project](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/App.test.js) for an example test. The [jest documentation](https://facebook.github.io/jest/docs/en/getting-started.html) is also a wonderful resource, as is the [React Native testing tutorial](https://facebook.github.io/jest/docs/en/tutorial-react-native.html).
 
 ### Break down into end to end tests
 
@@ -57,13 +57,14 @@ Give an example
 Add additional notes about how to deploy this on a live system
 
 ## Built With
-ATOM
-Postman
-Windows 10 PC
+
 
 ## Contributing
 
+## Updating
 
+You should only need to update the global installation of create-react-native-app very rarely, ideally never.
+Updating the react-native-scripts dependency of your app should be as simple as bumping the version number in package.json and reinstalling your project's dependencies. Upgrading to a new version of React Native requires updating the react-native, react, and expo package versions, and setting the correct sdkVersion in app.json. See the versioning guide for up-to-date information about package version compatibility.
 
 ## Versioning
 
