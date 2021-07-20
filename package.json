@@ -15,7 +15,7 @@
     "react": "16.9.0",
     "react-dom": "^16.13.0",
     "react-moment": "^0.9.7",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-draftjs-render": "^2.9.0",
     "react-native-elements": "^1.2.7",
     "react-native-form-validator": "^0.3.2",
